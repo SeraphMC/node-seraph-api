@@ -4,6 +4,8 @@
     "target": "ES5",
     "module": "ESNext",
     "moduleDetection": "force",
+    "declaration": true,
+    "declarationMap": true,
 
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,

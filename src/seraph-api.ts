@@ -3,7 +3,6 @@ import { PlayerCacheService } from "./services/player-cache-service.js";
 import { MojangUtils } from "./services/player-mojang-utils.js";
 import { PlayerStashService } from "./services/player-stash-service.js";
 import { PlayerClientService } from "./services/player-client-service.js";
-import { PlayerLinkingService } from "./services/player-linking-service.js";
 import type { SeraphTokenType } from "./models.js";
 
 export class SeraphAPI {
@@ -11,7 +10,6 @@ export class SeraphAPI {
 	private readonly playerCacheService;
 	private readonly authService;
 	private readonly playerMojangUtils;
-	private readonly playerLinkingService;
 	private readonly playerClientService;
 	private readonly playerStashService;
 
@@ -22,7 +20,6 @@ export class SeraphAPI {
 		this.playerMojangUtils = new MojangUtils();
 		this.playerStashService = new PlayerStashService(this.authService);
 		this.playerClientService = new PlayerClientService(this.authService);
-		this.playerLinkingService = new PlayerLinkingService(this.authService);
 	}
 
 	public get getPlayerCacheService() {
@@ -39,10 +36,6 @@ export class SeraphAPI {
 
 	public get getPlayerClientService() {
 		return this.playerClientService;
-	}
-
-	public get getPlayerLinkingService() {
-		return this.playerLinkingService;
 	}
 
 	public get getAuthService() {

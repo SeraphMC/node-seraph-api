@@ -1,1 +1,1 @@
-export { SeraphAPI } from "./seraph-api.ts";
+export { SeraphAPI } from "./seraph-api.js";

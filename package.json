@@ -2,7 +2,7 @@
   "name": "@seraphmc/node-seraph-api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Official TypeScript typings and API wrapper for SeraphMC services.",
   "scripts": {
     "build": "tsc",
@@ -14,12 +14,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/SeraphMC/node-seraph-api.git"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
   },
   "files": [
     "dist"

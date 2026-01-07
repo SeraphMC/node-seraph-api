@@ -2,7 +2,7 @@ import type { UUID } from "crypto";
 
 export type Nullable<T> = { [P in keyof T]: T[P] | null; };
 
-export type ClientType = "LABYMOD" | "ESSENTIAL" | "BADLION" | "FEATHER" | "LUNAR" | "NONE";
+export type ClientType = "LABYMOD" | "ESSENTIAL" | "BADLION" | "FEATHER" | ("LUNAR" | "LUNAR_CLIENT") | "NONE";
 
 export type SeraphTokenType = "LEGACY" | "DEVELOPER"
 

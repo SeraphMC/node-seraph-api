@@ -8,6 +8,11 @@ export class MojangUtils {
 	constructor() {
 	}
 
+	/**
+	 * Fetches a Mojang player from their name or UUID.
+	 * @param {string | UUID} nameOrId Name or UUID of the player.
+	 * @returns {Promise<MojangPlayer | null>} A promise that resolves to the Mojang player data.
+	 */
 	public fetchMojang = async (nameOrId: string | UUID) => {
 		try {
 			const response = await fetch(`${this.baseURL}/mojang/${nameOrId}`);

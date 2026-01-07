@@ -1,5 +1,6 @@
 import { SeraphAuthService } from "./auth-service.js";
 import type { UUID } from "node:crypto";
+import type { PlayerPing, SeraphSearchResponse } from "../models";
 
 export class PlayerStashService {
 
@@ -8,6 +9,11 @@ export class PlayerStashService {
 	constructor(private authService: SeraphAuthService) {
 	}
 
+	/**
+	 * Fetches a list of players based on the provided query.
+	 * @param {string} query Query to search for players.
+	 * @returns {Promise<SeraphSearchResponse[]>} A list of players that match the query.
+	 */
 	public fetchSeraphSearch = async (query: string) => {
 		try {
 			const response = await fetch(`${this.baseURL}/search`, {
@@ -18,9 +24,9 @@ export class PlayerStashService {
 					Authorization: await this.authService.getSeraphToken(true),
 				},
 			});
-
 			if (!response.ok) return [];
-			const data = (await response.json()) as { name: string; value: string }[];
+
+			const data = (await response.json()) as SeraphSearchResponse[];
 			if (data == null) {
 				return [];
 			}
@@ -31,7 +37,12 @@ export class PlayerStashService {
 		}
 	};
 
-	public fetchSeraphPing = async (playerId: UUID | string) => {
+	/**
+	 * Fetches the ping history of a player.
+	 * @param {UUID} playerId UUID of the player.
+	 * @returns {Promise<PlayerPing> | null} Ping history of the player.
+	 */
+	public fetchSeraphPing = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`${this.baseURL}/ping/${playerId}`, {
 				headers: {
@@ -40,18 +51,7 @@ export class PlayerStashService {
 			});
 
 			if (response.ok) {
-				const { data } = (await response.json()) as {
-					data:
-						| {
-						date: string;
-						max: number;
-						min: number;
-						avg: number;
-						history: number[];
-						last_ping?: string;
-					}[]
-						| null;
-				};
+				const { data } = (await response.json()) as PlayerPing;
 				return data;
 			}
 

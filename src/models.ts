@@ -6,6 +6,19 @@ export type ClientType = "LABYMOD" | "ESSENTIAL" | "BADLION" | "FEATHER" | ("LUN
 
 export type SeraphTokenType = "LEGACY" | "DEVELOPER"
 
+export type SeraphSearchResponse = { name: string; value: string };
+
+export type PlayerPing = {
+	data: {
+		date: string;
+		max: number;
+		min: number;
+		avg: number;
+		history: number[];
+		last_ping?: string;
+	}[] | null;
+}
+
 export type PlayerClientDataModel = {
 	uuid?: UUID;
 	online?: boolean;

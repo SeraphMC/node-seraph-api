@@ -13,7 +13,13 @@ import type {
 } from "../models.js";
 import { type } from "node:os";
 
-type CommonClient = { clientId: ClientType };
+type CommonClient = {
+	/**
+	 * Internal client ID.
+	 * Prefer the 'client' property to accurately identify if the player is on a client.
+	 */
+	clientId: ClientType
+};
 
 type LunarClientModel = {
 	/** * @deprecated Please use 'LUNAR_CLIENT'.
@@ -58,6 +64,11 @@ export class PlayerClientService {
 	constructor(private authService: SeraphAuthService) {
 	}
 
+	/**
+	 * Fetches the client data of a player.
+	 * @param {UUID} playerId UUID of the player.
+	 * @returns {Promise<ClientModel[]null>} Client data of the player.
+	 */
 	public fetchClient = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`https://client.seraph.si/client/${playerId}`, {
@@ -76,6 +87,11 @@ export class PlayerClientService {
 		}
 	};
 
+	/**
+	 * Fetches the client cosmetics of a player.
+	 * @param {UUID} playerId UUID of the player.
+	 * @returns {Promise<{essential: PlayerEssentialClientAssets[], lunar_client: PlayerLunarClientAssets[], badlion_client: PlayerBadlionClientAssets[]}>} Client cosmetics of the player.
+	 */
 	public fetchClientCosmetics = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`https://client.seraph.si/cosmetics/${playerId}`, {

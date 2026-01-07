@@ -8,7 +8,12 @@ export class PlayerCacheService {
 	constructor(private authService: SeraphAuthService) {
 	}
 
-	public fetchPlayerChanges = async (playerId: UUID | string) => {
+	/**
+	 * Fetches the player changes of a player.
+	 * @param {UUID} playerId UUID of the player.
+	 * @returns {Promise<PlayerCachePlayerHistoryEntry<{}>[] | null} Player changes of the player.
+	 */
+	public fetchPlayerChanges = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`${this.baseURL}/player/changes/${playerId}`, {
 				headers: {
@@ -26,7 +31,12 @@ export class PlayerCacheService {
 		}
 	};
 
-	public fetchPlayerTimestamps = async (playerId: UUID | string) => {
+	/**
+	 * Fetches the player timestamps of a player.
+	 * @param {UUID} playerId UUID of the player.
+	 * @returns {Promise<PlayerCachePlayerHistoryTimestamps[] | null>} Player timestamps of the player.
+	 */
+	public fetchPlayerTimestamps = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`${this.baseURL}/player/timestamps/${playerId}`, {
 				headers: {
@@ -46,7 +56,14 @@ export class PlayerCacheService {
 		}
 	};
 
-	public fetchPlayerHistory = async (playerId: UUID | string) => {
+	/**
+	 * Fetches the history of a player based on the provided player ID.
+	 *
+	 * @param {UUID} playerId UUID of the player.
+	 *
+	 * @returns {Promise<PlayerCachePlayerHistory | null>} A promise that resolves to the player's history data
+	 */
+	public fetchPlayerHistory = async (playerId: UUID) => {
 		try {
 			const response = await fetch(`${this.baseURL}/player/${playerId}`, {
 				headers: {
@@ -64,6 +81,12 @@ export class PlayerCacheService {
 		}
 	};
 
+	/**
+	 * Fetches the history of a player based on the provided player ID and timestamp.
+	 * @param {UUID} playerId UUID of the player.
+	 * @param {string} timestamp Timestamp to fetch the player history from.
+	 * @returns {Promise<PlayerCachePlayerHistory | null>} A promise that resolves to the player's history data
+	 */
 	public fetchPlayerHistoryByTimestamp = async (playerId: UUID | string, timestamp: string) => {
 		try {
 			const response = await fetch(`${this.baseURL}/player`, {

@@ -11,7 +11,6 @@ import type {
 	PlayerLunarClientAssets,
 	PlayerLunarClientDataModel,
 } from "../models.js";
-import { type } from "node:os";
 
 type CommonClient = {
 	/**
@@ -22,11 +21,7 @@ type CommonClient = {
 };
 
 type LunarClientModel = {
-	/** * @deprecated Please use 'LUNAR_CLIENT'.
-	 * 'LUNAR' is being phased out as it breaks Lunar Client's naming convention rules
-	 * Support for 'LUNAR' will be removed in the next major release
-	 */
-	client: "LUNAR" | "LUNAR_CLIENT";
+	client: 'LUNAR';
 	data: PlayerLunarClientDataModel;
 }
 
@@ -105,8 +100,8 @@ export class PlayerClientService {
 
 			return (await response.json()) as {
 				essential: PlayerEssentialClientAssets[];
-				lunar_client: PlayerLunarClientAssets[];
-				badlion_client: PlayerBadlionClientAssets[];
+				lunar: PlayerLunarClientAssets[];
+				badlion: PlayerBadlionClientAssets[];
 			};
 		} catch (error) {
 			return null;

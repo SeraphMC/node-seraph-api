@@ -4,7 +4,7 @@ export type Nullable<T> = { [P in keyof T]: T[P] | null; };
 
 export type ClientType = "LABYMOD" | "ESSENTIAL" | "BADLION" | "FEATHER" | "LUNAR" | "NONE";
 
-export type SeraphTokenType = "SERAPH" | "DEVELOPER"
+export type SeraphTokenType = "LEGACY" | "DEVELOPER"
 
 export type PlayerClientDataModel = {
 	uuid?: UUID;

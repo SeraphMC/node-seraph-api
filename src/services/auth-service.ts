@@ -14,7 +14,7 @@ export class SeraphAuthService {
 
 	public getNewToken = async () => {
 		let refreshURL: string;
-		if (this.tokenType === "SERAPH") {
+		if (this.tokenType === "LEGACY") {
 			refreshURL = "https://auth.seraph.si/v1/refresh";
 		} else {
 			refreshURL = "https://auth.seraph.si/v2/refresh/developer";

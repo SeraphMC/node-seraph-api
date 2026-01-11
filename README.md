@@ -19,12 +19,13 @@ To use the Seraph API, you need to instantiate `SeraphAPI` with your client refr
 import { SeraphAPI } from "./seraph-api.ts";
 
 const clientRefreshToken = process.env.SERAPH_CLIENT_REFRESH_TOKEN;
+const seraphApiKey = process.env.SERAPH_API_KEY;
 
 if (!clientRefreshToken) {
     throw new Error("Seraph refresh token is required.");
 }
 
-const seraph = new SeraphAPI(clientRefreshToken);
+const seraph = new SeraphAPI('DEVELOPER', clientRefreshToken, seraphApiKey);
 ```
 
 ### Available Services
@@ -57,10 +58,10 @@ Provides methods to fetch player client information (e.g., Lunar Client, Badlion
 
 ```typescript
 const clientService = seraph.getPlayerClientService;
-const clients = await clientService.fetchClient("PLAYER_UUID");
+const clients = await clientService.fetchClient('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 console.log(clients);
 
-const cosmetics = await clientService.fetchClientCosmetics("PLAYER_UUID");
+const cosmetics = await clientService.fetchClientCosmetics('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 console.log(cosmetics);
 ```
 
@@ -71,10 +72,10 @@ Allows fetching historical player data and changes from the player cache.
 ```typescript
 const cacheService = seraph.getPlayerCacheService;
 
-const playerHistory = await cacheService.fetchPlayerHistory("PLAYER_UUID");
+const playerHistory = await cacheService.fetchPlayerHistory('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 console.log(playerHistory);
 
-const playerChanges = await cacheService.fetchPlayerChanges("PLAYER_UUID");
+const playerChanges = await cacheService.fetchPlayerChanges('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 console.log(playerChanges);
 ```
 
@@ -85,10 +86,10 @@ Provides access to player stash functionalities, including search and ping data.
 ```typescript
 const stashService = seraph.getPlayerStashService;
 
-const searchResults = await stashService.fetchSeraphSearch("some_query");
+const searchResults = await stashService.fetchSeraphSearch("Notch");
 console.log(searchResults);
 
-const seraphPing = await stashService.fetchSeraphPing("PLAYER_UUID");
+const seraphPing = await stashService.fetchSeraphPing('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 console.log(seraphPing);
 ```
 

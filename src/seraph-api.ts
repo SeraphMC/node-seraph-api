@@ -4,6 +4,8 @@ import { MojangUtils } from "./services/player-mojang-utils.js";
 import { PlayerStashService } from "./services/player-stash-service.js";
 import { PlayerClientService } from "./services/player-client-service.js";
 import type { SeraphTokenType } from "./models.js";
+import { PlayerReportService } from "./services/player-report-service.js";
+import type { UUID } from "crypto";
 
 export class SeraphAPI {
 
@@ -12,14 +14,16 @@ export class SeraphAPI {
 	private readonly playerMojangUtils;
 	private readonly playerClientService;
 	private readonly playerStashService;
+	private readonly reportService;
 
 	// Constructs new SeraphAPI instance using a client token.
-	public constructor(tokenType: SeraphTokenType, clientRefreshToken: string) {
+	public constructor(tokenType: SeraphTokenType, clientRefreshToken: string, seraphApiKey: UUID) {
 		this.authService = new SeraphAuthService(tokenType, clientRefreshToken);
 		this.playerCacheService = new PlayerCacheService(this.authService);
 		this.playerMojangUtils = new MojangUtils();
 		this.playerStashService = new PlayerStashService(this.authService);
 		this.playerClientService = new PlayerClientService(this.authService);
+		this.reportService = new PlayerReportService(seraphApiKey);
 	}
 
 	public get getPlayerCacheService() {
@@ -40,6 +44,10 @@ export class SeraphAPI {
 
 	public get getAuthService() {
 		return this.authService;
+	}
+
+	public get getReportService() {
+		return this.reportService;
 	}
 
 }

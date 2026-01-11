@@ -2,6 +2,92 @@ import type { UUID } from "crypto";
 
 export type Nullable<T> = { [P in keyof T]: T[P] | null; };
 
+export type AddReportPayload = {
+	uuid: string;
+	report_type?: string;
+	reason?: string;
+}
+
+export type SeraphReport = {
+	success: boolean;
+	data: {
+		uuid: string;
+		key_type?: string;
+		member?: {
+			tagged: true;
+			tooltip?: string;
+		} | {
+			tagged: false;
+		};
+		bot?: {
+			tagged: true;
+			unidentified?: boolean;
+			kay?: boolean;
+		} | {
+			tagged: false;
+		};
+		blacklist: {
+			tagged: false
+		};
+		safelist: {
+			tagged: true;
+			timesKilled?: number;
+			security_level?: number;
+			personal?: boolean;
+			added_by?: string;
+			tooltip?: string;
+			time_added?: number;
+			time_updated?: number;
+			discord_linked?: string;
+		} | {
+			tagged: false;
+		};
+		customTag?: string | null;
+		statistics?: {
+			encounters?: number;
+			threat_level?: number;
+		};
+		annoylist?: {
+			tagged: true;
+			tooltip?: string;
+		} | {
+			tagged: false;
+		};
+		name_change?: {
+			tagged: true;
+			last_change?: number;
+			changed?: boolean;
+			tooltip?: string;
+		} | {
+			tagged: false;
+		};
+	} | {
+		blacklist: {
+			tagged: true;
+			timestamp?: Date;
+			reason?: string;
+			report_type?: string;
+			tooltip?: string;
+			verified?: boolean;
+		}
+	};
+};
+
+export type StandardOverlayFormat = {
+	score?: {
+		value: number
+		mode?: "add" | "set"
+	}
+
+	tags?: {
+		icon?: string
+		text?: string
+		tooltip?: string
+		color?: number
+		textColor?: number
+	}[]
+}
+
 export type ClientType = "LABYMOD" | "ESSENTIAL" | "BADLION" | "FEATHER" | ("LUNAR" | "LUNAR_CLIENT") | "NONE";
 
 export type SeraphTokenType = "LEGACY" | "DEVELOPER"

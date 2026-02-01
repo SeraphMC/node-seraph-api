@@ -6,6 +6,7 @@ import { PlayerClientService } from "./services/player-client-service.js";
 import type { SeraphTokenType } from "./models.js";
 import { PlayerReportService } from "./services/player-report-service.js";
 import type { UUID } from "crypto";
+import { LeaderboardService } from "./services/player-leaderboard-service";
 
 export class SeraphAPI {
 
@@ -16,6 +17,8 @@ export class SeraphAPI {
 	private readonly playerStashService;
 	private readonly reportService;
 
+	private readonly leaderboardService;
+
 	// Constructs new SeraphAPI instance using a client token.
 	public constructor(tokenType: SeraphTokenType, clientRefreshToken: string, seraphApiKey: UUID) {
 		this.authService = new SeraphAuthService(tokenType, clientRefreshToken);
@@ -24,6 +27,7 @@ export class SeraphAPI {
 		this.playerStashService = new PlayerStashService(this.authService);
 		this.playerClientService = new PlayerClientService(this.authService);
 		this.reportService = new PlayerReportService(seraphApiKey);
+		this.leaderboardService = new LeaderboardService(this.authService);
 	}
 
 	public get getPlayerCacheService() {
@@ -48,6 +52,10 @@ export class SeraphAPI {
 
 	public get getReportService() {
 		return this.reportService;
+	}
+
+	public get getLeaderboardService() {
+		return this.leaderboardService;
 	}
 
 }

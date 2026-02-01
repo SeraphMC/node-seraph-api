@@ -2,7 +2,7 @@
   "name": "@seraphmc/node-seraph-api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Official TypeScript typings and API wrapper for SeraphMC services.",
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
   ],
   "devDependencies": {
     "@types/bun": "latest",
-    "discord-api-types": "^0.38.37",
+    "discord-api-types": "^0.38.38",
     "typescript": "^5.9.3"
   }
 }
